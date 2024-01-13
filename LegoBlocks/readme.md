@@ -1,3 +1,7 @@
+# Problem
+https://www.hackerrank.com/challenges/one-week-preparation-kit-lego-blocks/problem
+
+
 # Skill
 1. DP
 
@@ -9,3 +13,9 @@
 # Reference
 1. https://www.youtube.com/watch?v=u9fL52Hryiw
 
+
+# Run
+```
+export OUTPUT_PATH=./output.txt
+python sol.py < ./test_cases/1/input.txt
+```
