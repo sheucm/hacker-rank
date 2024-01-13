@@ -15,6 +15,7 @@ import sys
 #  2. 2D_INTEGER_ARRAY astronaut
 #
 
+
 def journeyToMoon(n, astronaut):
     
     # Write your code here
@@ -35,16 +36,31 @@ def journeyToMoon(n, astronaut):
         
         vis[p] = True
         
+        
+        #### DFS (Will have 1 case of "RecursionError: maximum recursion depth exceeded")####
+        # def dfs(_p):
+        #     for ch in graph[_p]:
+        #         if vis[ch]:
+        #             continue
+        #         vis[ch] = True
+        #         group_cnts[-1] += 1
+        #         dfs(ch)
+        # dfs(p)
+        #### DFS END ####
+        
+        
+        
+        #### BFS (Pass) ####
         q = [p]
         while q:
             pop_p = q.pop(0)
             for ch in graph[pop_p]:
                 if vis[ch]:
-                    continue
-                
+                    continue  
                 vis[ch] = True
                 group_cnts[-1] += 1
                 q.append(ch)
+        #### BFS END ####
     
 
     
@@ -55,12 +71,14 @@ def journeyToMoon(n, astronaut):
     #         ans += group_cnts[i] * group_cnts[j]
     #########################################################
     
+    # print(group_cnts)
     ans = 0
     _sum = group_cnts[0]
     for i in range(1, len(group_cnts)):
         ans += _sum * group_cnts[i]
         _sum += group_cnts[i]
         
+    print(ans)
     return ans
 
     
