@@ -21,7 +21,6 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
     # Write your code here
     
     
-    # BFS
     graph = [set() for _ in range(n+1)]
     for v1, v2 in cities:
         graph[v1].add(v2)
@@ -41,23 +40,41 @@ def roadsAndLibraries(n, c_lib, c_road, cities):
         lib_cnt += 1
         
         vis[v] = True
-        q = [v]
         
+        
+        ### DFS (Pass) ###
+        # def dfs(_v):
+        #     nonlocal road_cnt
+        #     for ch in graph[_v]:
+        #         if vis[ch]:
+        #             continue
+        #         vis[ch] = True
+        #         road_cnt += 1
+        #         dfs(ch)
+        # dfs(v)
+        ### DFS END ###
+        
+        ### BFS (Pass) ###
+        q = [v]
         while q:
             pop_v = q.pop(0)
             for ch in graph[pop_v]:
                 if vis[ch]:
                     continue
-                
                 vis[ch] = True
                 road_cnt += 1
                 q.append(ch)
+        ### BFS END ###
+        
+        
     
     cost = lib_cnt * c_lib + road_cnt * c_road
     
     cost2 = n * c_lib
     
-    return min(cost, cost2)
+    ans = min(cost, cost2)
+    print(ans)
+    return ans
     
     
 
