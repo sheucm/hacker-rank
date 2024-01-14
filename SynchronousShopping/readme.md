@@ -4,11 +4,10 @@ https://www.hackerrank.com/challenges/synchronous-shopping/problem
 
 # Skill
 1. Dijkstra Shortest Path Alg.
-2. DFS
+2. BFS
 3. Bit Masking
 4. Graph Theory
-5. DP
-6. Min Heap
+5. Min Heap
 
 
 # Reference
