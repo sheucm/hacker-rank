@@ -1,3 +1,15 @@
+
+# Category
+# 1. BFS / DFS 
+# 2. Shortest Path (Dijkstra Algorithm)
+#     - BFS
+# 3. MST (Minimum Spanning Tree) (Prim's Algorithm)
+#     - BFS
+
+
+
+# -------------------------------------------------------------------------------------
+
 # N: number of nodes
 # edges: List of [v1, v2]
 # start: Start Node
