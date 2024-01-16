@@ -13,4 +13,4 @@ sorted(_list, reverse=True)
 sorted_objects = sorted(obj_list, key=lambda obj: obj.count, reverse=True)
 # Q: Sort string list? --> Same as number usage
 
-
+sorted_edges = sorted(edges, key=lambda e: e[2]) # sorted by weight

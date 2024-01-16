@@ -5,6 +5,7 @@
 #     - BFS
 # 3. MST (Minimum Spanning Tree) (Prim's Algorithm)
 #     - BFS
+#     - kruskal algo
 # 4. clique
 # 5. crab (undirected graph)
     # - Ford-Fulkerson Algorithm  (Max Flow Alg.)
@@ -263,6 +264,46 @@ print ("The maximum possible flow is %d " % g.FordFulkerson(source, sink))
 
 
 
+# -------------------------------------------------------------------------------------
+# Kruskal's algorithm (Build MST: Minimum Spanning Tree)
+# Reference: https://www.youtube.com/watch?v=71UQH7Pr9kU
+N = 5
+E = 6
+edges = [  # Format: v1, v2, weight
+    [1, 3, 5],
+    [4, 5, 0],
+    [2, 1, 3],
+    [3, 2, 1],
+    [4, 3, 4],
+    [4, 2, 2],
+]
+
+parent = [i for i in range(N+1)]
+
+def find(i):
+	while i != parent[parent[i]]:
+		parent[i] = parent[parent[i]]
+		i = parent[i]
+	return i 
+
+def union(x, y):
+    p_x = find(x)
+    p_y = find(y)
+    parent[p_y] = p_x
+
+def is_connect(x, y):
+    p_x = find(x)
+    p_y = find(y)
+    return p_x == p_y
 
 
+mst = [set() for _ in range(N+1)]
 
+edges = sorted(edges, key=lambda x: x[2])
+for v1, v2, w in edges:
+    if not is_connect(v1, v2):
+        union(v1, v2)
+        mst[v1].add((v2, w))
+        mst[v2].add((v1, w))
+
+print(mst)
