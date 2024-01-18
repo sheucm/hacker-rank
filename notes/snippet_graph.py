@@ -1,6 +1,11 @@
 
 # Category
 # 1. BFS / DFS 
+    # - DFS: remember to set below settings to avoid "RecursionError: maximum recursion depth exceeded"
+    # '''
+    # import sys
+    # sys.setrecursionlimit(100000)
+    # '''
 # 2. Shortest Path (Dijkstra Algorithm)
 #     - BFS
 # 3. MST (Minimum Spanning Tree) (Prim's Algorithm)

@@ -8,6 +8,9 @@
 # Challenges
 (empty)
 
+# Solving Mindset
+(empty)
+
 # Reference
 (empty)
 
