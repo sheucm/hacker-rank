@@ -15,7 +15,7 @@ https://www.hackerrank.com/challenges/jeanies-route/problem
 4. Answer = 2 * total_dis - longest_dis
 
 # Reference
-(empty)
+- https://www.youtube.com/watch?v=ph-jcosp05k
 
 # Run
 ```
