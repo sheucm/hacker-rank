@@ -12,62 +12,44 @@ import sys
 #
 # The function is expected to return an INTEGER_ARRAY.
 # The function accepts following parameters:
-#  1. INTEGER n: # of nodes
-#  2. INTEGER m: # of edges
+#  1. INTEGER n
+#  2. INTEGER m
 #  3. 2D_INTEGER_ARRAY edges
-#  4. INTEGER s: start
+#  4. INTEGER s
 #
-    
 
-def bfs(N, E, edges, start):
+def bfs(n, m, edges, s):
+    m = {}
     
-    # # Return: List[int]
-    # # Write your code here
-    
-    WEIGHT = 6
-    
-    graph = [set() for _ in range(N+1)]
-    for v1,v2 in edges:
+    graph = [set() for _ in range(n+1)]
+    for v1, v2 in edges:
         graph[v1].add(v2)
         graph[v2].add(v1)
-        
     
-    distances = [-1] * (N+1)
-    distances[start] = 0
-    
-    vis = [False] * (N+1)
-    vis[start] = True
-    
-    q = [(start, 0)]
-    while q:
-        pop_v, dis = q.pop(0)
-        
-        for ch in graph[pop_v]:
-            if vis[ch]:
+    def bfs(v):
+        vis = [False] * (n+1)
+        q = [(v, 0)]
+        while q:
+            v, step = q.pop(0)
+            if not v:
                 continue
-                
-            vis[ch] = True
-            distances[ch] = dis + WEIGHT
-            q.append((ch, dis + WEIGHT))
-        
+            if vis[v]:
+                continue
+            vis[v] = True
+            m[v] = step
+            for u in graph[v]:
+                q.append((u, step+1))
+    bfs(s)
     ans = []
-    for idx, d in enumerate(distances):
-        if idx == 0:
+    for i in range(1, n+1):
+        if i == s:
             continue
-        if d == 0:
-            continue
-        ans.append(d)
-    
-    print(ans)
+        if i not in m:
+            ans.append(-1)
+        else:
+            ans.append(m[i] * 6)
     return ans
-    
-    
-      
         
-    
-    
-    
-    
     
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
@@ -94,4 +76,3 @@ if __name__ == '__main__':
         fptr.write('\n')
 
     fptr.close()
-
