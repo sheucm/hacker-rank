@@ -20,7 +20,7 @@ def get_ways(n):
         return 2
     return get_ways(n-1) + get_ways(n-4)
 
-def get_prime_count(n):
+def sieve_prime(n):
     primes = [True] * (n+1)
     primes[0], primes[1] = False, False
     for i in range(2, int(math.sqrt(n))+1):
@@ -31,8 +31,8 @@ def get_prime_count(n):
 
 def redJohn(n):
     ways = get_ways(n)
-    p = get_prime_count(ways)
-    return p
+    prime_count = sieve_prime(ways)
+    return prime_count
 
 if __name__ == '__main__':
     fptr = open(os.environ['OUTPUT_PATH'], 'w')
