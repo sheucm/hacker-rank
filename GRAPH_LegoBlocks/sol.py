@@ -5,48 +5,54 @@ import os
 import random
 import re
 import sys
-
+MOD = 10**9+7
+def power(x, y):
+    if y == 1:
+        return x
+    if y % 2 == 0:
+        return power(x**2 % MOD, y//2)
+    else:
+        return x * power(x**2 % MOD, y//2)
 #
 # Complete the 'legoBlocks' function below.
 #
 # The function is expected to return an INTEGER.
 # The function accepts following parameters:
-#  1. INTEGER n (height)
-#  2. INTEGER m (width)
+#  1. INTEGER n
+#  2. INTEGER m
 #
-
-def legoBlocks(H, W):
-    R = [0] * (W+1)  # The DP of row combination
-    T = [0] * (W+1)  # The DP of total combination (include unsolid (bad) and solid)
-    S = [0] * (W+1)  # The DP of solid combination (total - unsolid)
-    MOD = 10 ** 9 + 7
+def legoBlocks(n, m):
+    # Write your code here
+    DP_R = [0] * (m+1) # The DP of row combination
+    DP_T = [0] * (m+1) # The DP of total combination (include unsolid (bad) and solid)
+    DP_S = [0] * (m+1) # The DP of solid combination (total - unsolid)
     
+    ### Init DP
+    DP_T[0], DP_S[0] = 1, 1
+    DP_T[1], DP_S[1] = 1, 1
     
-    R[:5] = [0,1,2,4,8]   # Initial values for DP
+    ### Calculate DP_R
+    for i in range(1, m+1):
+        if i <= 4:
+            DP_R[i] = 2 ** (i-1)
+        else:
+            DP_R[i] = (DP_R[i-1] + DP_R[i-2] + DP_R[i-3] + DP_R[i-4]) % MOD
     
-    # Calculate "R"
-    for w in range(5, W+1):
-        R[w] = (R[w-1] + R[w-2] + R[w-3] + R[w-4]) % MOD
-    
-    
-    # Calculate "T"
-    # Note: Here cannot use "T[w] ** H" as will cause number overflow, so use MOD to avoid it.
-    for w in range(1, W+1):
-        T[w] = 1
-        for _ in range(H):
-            T[w] = (T[w] * R[w]) % MOD
+    ### Calculate DP_T / DP_S
+    for i in range(2, m+1):
+        # Notice: Cannot use DP_R[i] ** n, otherwise overflow
+        DP_T[i] = power(DP_R[i], n) % MOD
         
-    # Calculate "S"
-    S[1] = 1
-    for w in range(2, W+1):
-        bad = 0
-        for i in range(1, w):
-            bad = (bad + S[i] * T[w-i]) % MOD
+        # Notice: Cannot use sum(), otherwise overflow
+        unsolid = 0
+        for j in range(1, i):
+            unsolid = (unsolid + DP_S[j] * DP_T[i-j]) % MOD
         
-        S[w] = (T[w] - bad) % MOD
+        DP_S[i] = (DP_T[i] - unsolid) % MOD
+    return DP_S[m] % MOD
+        
     
-
-    return S[W] % MOD
+    
     
 
 if __name__ == '__main__':
@@ -66,5 +72,3 @@ if __name__ == '__main__':
         fptr.write(str(result) + '\n')
 
     fptr.close()
-
-

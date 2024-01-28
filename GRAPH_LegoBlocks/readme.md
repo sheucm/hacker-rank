@@ -1,5 +1,5 @@
 # Problem
-https://www.hackerrank.com/challenges/one-week-preparation-kit-lego-blocks/problem
+https://www.hackerrank.com/challenges/lego-blocks/problem
 
 
 # Skill
