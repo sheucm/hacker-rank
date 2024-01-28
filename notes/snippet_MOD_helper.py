@@ -1,3 +1,6 @@
+### In Hacker Rank, quite often that the answer should mod 10**9+7, and many basic functions will break the result.
+### Below, record some common functions that might be used when coding Hackerrank.
+
 ### How to handle division for big integer?
 MOD = 10**9 + 7
 
@@ -8,6 +11,10 @@ def power(x, n, m):
         return power(x ** 2 % m, n // 2, m)
     else:
         return (x * power(x ** 2 % m, (n - 1) // 2, m)) % m
+power(2, 2) # 4
+power(3, 4) # 81    
+
+    
 def devision(a, b):
     return (a * power(b, MOD-2, MOD)) % MOD
 
